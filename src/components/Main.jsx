@@ -3,21 +3,29 @@ import api from '../utils/Api.js';
 import Card from '../components/Card.jsx';
 
 function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
-  const [userName, setUserName] = useState();
-  const [userDescription, setUserDescription] = useState();
-  const [userAvatar, setUserAvatar] = useState();
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getUserInfo().then(userInfo => {
-      setUserName(userInfo.name);
-      setUserDescription(userInfo.about);
-      setUserAvatar(userInfo.avatar);
-    })
+    api.getUserInfo()
+      .then(userInfo => {
+        setUserName(userInfo.name);
+        setUserDescription(userInfo.about);
+        setUserAvatar(userInfo.avatar);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
-    api.getInitialCards().then(cardData => {
-      setCards(cardData);
-    })
+    api.getInitialCards()
+      .then(cardData => {
+        setCards(cardData);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, [])
 
   return (

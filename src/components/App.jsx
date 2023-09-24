@@ -6,10 +6,10 @@ import PopupWithForm from './PopupWithForm.jsx';
 import ImagePopup from './ImagePopup.jsx';
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState();
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState();
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState();
-  const [selectedCard, setSelectedCard] = useState();
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState('');
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
