@@ -39,12 +39,16 @@ function App() {
       <Header />
       <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick}/>
       <Footer />
-      <PopupWithForm title='Редактировать профиль' name='profile-edit' submitButtonText='Сохранить' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-        <input id="userName" className="popup__input popup__input_user-name" name="userName" type="text" placeholder="Введите имя" minLength="2" maxLength="40" required></input>
-        <p className="popup__error userName-error"></p>
-        <input id="aboutUser" className="popup__input popup__input_about-user" name="aboutUser" type="text" placeholder="О себе" minLength="2" maxLength="200" required></input>
-        <p className="popup__error aboutUser-error"></p>
-      </PopupWithForm>
+        <EditProfilePopup />
+        <PopupWithForm
+          title="Редактировать профиль"
+          name="profile-edit"
+          submitButtonText="Сохранить"
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        >
+          PopupWithForm
+        </PopupWithForm>
       <PopupWithForm title='Новое место' name='add-card' submitButtonText='Создать' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
         <input id="placeName" className="popup__input" name="name" type="text" placeholder="Название" minLength="2" maxLength="30" required></input>
         <p className="popup__error placeName-error"></p>
