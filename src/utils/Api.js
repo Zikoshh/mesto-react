@@ -29,13 +29,13 @@ class Api {
     }).then(this._getResponse);
   }
 
-  setUserInfo({ userName, aboutUser }) {
+  setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: `${userName}`,
-        about: `${aboutUser}`,
+        name: `${name}`,
+        about: `${about}`,
       }),
     }).then(this._getResponse);
   }
@@ -60,18 +60,9 @@ class Api {
     }).then(this._getResponse);
   }
 
-  putLike(cardId) {
+  changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: {
-        authorization: this._authorizationToken,
-      },
-    }).then(this._getResponse);
-  }
-
-  removeLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
+      method: `${isLiked ? "DELETE" : "PUT"}`,
       headers: {
         authorization: this._authorizationToken,
       },
