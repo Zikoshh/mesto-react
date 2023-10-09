@@ -11,7 +11,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -51,7 +51,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         minLength="2"
         maxLength="40"
         required
-        value={name}
+        value={name || ''}
         onChange={handleNameChange}
       />
       <p className="popup__error name-error"></p>
@@ -64,7 +64,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         minLength="2"
         maxLength="200"
         required
-        value={description}
+        value={description || ''}
         onChange={handleDescriptionChange}
       />
       <p className="popup__error about-error"></p>

@@ -90,12 +90,14 @@ function App() {
             return card._id !== selectedCardToDelete._id;
           })
         );
-        setIsLoading(false);
         closeAllPopups();
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }
 
   function handleUpdateUser(newUserInfo) {
@@ -104,12 +106,14 @@ function App() {
       .setUserInfo(newUserInfo)
       .then((userInfo) => {
         setCurrentUser(userInfo);
-        setIsLoading(false);
         closeAllPopups();
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }
 
   function handleUpdateAvatar({ avatar }) {
@@ -118,12 +122,14 @@ function App() {
       .changeAvatar(avatar)
       .then((userInfo) => {
         setCurrentUser(userInfo);
-        setIsLoading(false);
         closeAllPopups();
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }
 
   function handleAddPlaceSubmit({ name, link }) {
@@ -132,12 +138,14 @@ function App() {
       .addNewCard({ name, link })
       .then((newCard) => {
         setCards([newCard, ...cards]);
-        setIsLoading(false);
         closeAllPopups();
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }
 
   return (

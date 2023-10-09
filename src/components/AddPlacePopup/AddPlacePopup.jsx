@@ -1,22 +1,30 @@
-import { useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/index.jsx";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
-  const inputNameRef = useRef("");
-  const inputLinkRef = useRef("");
+  const [ name, setName ] = useState("");
+  const [ link, setLink ] = useState("");
 
   useEffect(() => {
-    inputNameRef.current.value = "";
-    inputLinkRef.current.value = "";
+    setName('');
+    setLink('');
   }, [isOpen])
 
   function handleSubmit(e) {
     e.preventDefault();
 
     onAddPlace({
-      name: inputNameRef.current.value,
-      link: inputLinkRef.current.value,
+      name: name,
+      link: link,
     });
+  }
+
+  function handleNameChange(e) {
+    setName(e.target.value)
+  }
+
+  function handleLinkChange(e) {
+    setLink(e.target.value)
   }
 
   return (
@@ -40,7 +48,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
         minLength="2"
         maxLength="30"
         required
-        ref={inputNameRef}
+        value={name}
+        onChange={handleNameChange}
       ></input>
       <p className="popup__error placeName-error"></p>
       <input
@@ -50,7 +59,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
         type="url"
         placeholder="Ссылка на картинку"
         required
-        ref={inputLinkRef}
+        value={link}
+        onChange={handleLinkChange}
       ></input>
       <p className="popup__error placeLink-error"></p>
     </PopupWithForm>
